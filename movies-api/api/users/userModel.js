@@ -11,6 +11,10 @@ const UserSchema = new Schema({
 UserSchema.methods.comparePassword = async function (passw) { 
   return await bcrypt.compare(passw, this.password); 
 }
+
+UserSchema.statics.findByUserName = function (username) {
+  return this.findOne({ username: username });
+};
 const userValidator = (user) => {
     return user!==null;
 }
